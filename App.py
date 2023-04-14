@@ -36,7 +36,7 @@ def run():
     if img_file is not None:
         img = Image.open(img_file).resize((250, 250))
         st.image(img, use_column_width=False)
-        save_image_path = '/tmp/' + img_file.name
+        save_image_path = img_file.name
        
 
         if st.button("Predict"):

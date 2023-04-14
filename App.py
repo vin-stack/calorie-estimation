@@ -41,7 +41,7 @@ def run():
 
         if st.button("Predict"):
         #if img_file is not None:
-            result = processed_img(save_image_path)
+            #result = processed_img(save_image_path)
             url = 'http://192.168.1.5:5000/predict'
             form_data = {'file': open(save_image_path, 'rb')}
             resp = requests.post(url, files=form_data)

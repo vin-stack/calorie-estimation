@@ -32,19 +32,12 @@ def fetch_calories(prediction):
 
 def run():
     st.title("Fruits🍍-Vegetable🍅 Classification")
-    img_file = st.file_uploader("Choose an Image", type=["jpg", "png"])
-    if img_file is not None:
-        img = Image.open(img_file).resize((250, 250))
-        st.image(img, use_column_width=False)
-        save_image_path = img_file.name
-       
-
-        if st.button("Predict"):
-        #if img_file is not None:
-            #result = processed_img(save_image_path)
-            url = 'http://192.168.1.5:5000/predict'
-            form_data = {'file': open(save_image_path, 'rb')}
-            resp = requests.post(url, files=form_data)
+    uploaded_file = st.file_uploader("Upload a Image", type=["jpg","png", 'jpeg'])
+    if uploaded_file is not None:
+          with open(os.path.join("/tmp",uploaded_file.name),"wb") as f:
+                    f.write(uploaded_file.getbuffer())
+            path = os.path.join("/tmp",uploaded_file.name)
+            resp = requests.post(path, files=form_data)
             resp_dict = resp.json()
             result = resp_dict['prediction']
             print(result)

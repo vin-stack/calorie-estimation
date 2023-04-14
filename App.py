@@ -35,7 +35,7 @@ def run():
     uploaded_file = st.file_uploader("Upload a Image", type=["jpg","png", 'jpeg'])
     if uploaded_file is not None:
           with open(os.path.join("/tmp",uploaded_file.name),"wb") as f:
-                    f.write(uploaded_file.getbuffer())
+              f.write(uploaded_file.getbuffer())
             path = os.path.join("/tmp",uploaded_file.name)
             resp = requests.post(path, files=form_data)
             resp_dict = resp.json()
